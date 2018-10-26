@@ -1,15 +1,8 @@
-/* 
-   In this ROOT function we generate a distribution according to sin(x)
-   between 0 and pi
-
-   To run do:
-   root 
-   .L rootgenerate_v2.C+ 
-   rootfuncgenerate(10000)
-*/
 
 // include C++ STL headers 
 #include <iostream>
+#include <fstream>
+
 
 using namespace std;
 
@@ -19,13 +12,14 @@ using namespace std;
 #include <TStyle.h>  // style object
 #include <TMath.h>   // math functions
 #include <TCanvas.h> // canvas object
-#include <fstream>
+#include <TRandom.h>
 
-void rootfuncgenerate(Int_t nEvents, Int_t nTracks, Double_t v); // ROOT method (a bit dangerous since we don't know exactly what happens!)
+void rootfuncgenerate(Int_t nEvents, Int_t nTracks, Double_t sigmaTracks, Double_t v2, Double_t sigmaV2); // ROOT method (a bit dangerous since we don't know exactly what happens!)
 
 
-//________________________________________________________________________
-void rootfuncgenerate(Int_t nEvents, Int_t nTracks, Double_t v2) 
+//The sigmas show how much the random nTracks and v2 for each event can deviate
+//from the input values
+void rootfuncgenerate(Int_t nEvents, Int_t nTracks, Double_t sigmaTracks, Double_t v2, Double_t sigmav2) 
 {
   cout << "Generating " << nEvents << " events" << endl << endl;
 
@@ -33,21 +27,27 @@ void rootfuncgenerate(Int_t nEvents, Int_t nTracks, Double_t v2)
   TH1D* hPhi = new TH1D("hPhi", "ROOT func generated v2 distribution; Phi; Counts", 
 			100, 0, 2*TMath::Pi());
 
-  // Define the function we want to generate
-  TF1* v2Func = new TF1("v2Func", "1+2*[3]*cos(2*x)", 0, 2*TMath::Pi());
-  v2Func->SetParameter(3, v2);
-  
- 
   Double_t phi[nTracks];
- 
-  
   
   ofstream file("phi_dist.dat");
   
+  //TFile* file = new Tfile("phi") 
+ 
+ 
+ 
+ 
   // make a loop for the number of events
   for(Int_t n = 0; n < nEvents; n++) {
+	
+	Int_t nTracksRand = gRandom->Gaus(nTracks, sigmaTracks);
+	
+	Double_t v2Rand = gRandom->Gaus(v2, sigmav2);  
+
+	// Define the function we want to generate
+    TF1* v2Func = new TF1("v2Func", "1+2*[3]*cos(2*x)", 0, 2*TMath::Pi());
+    v2Func->SetParameter(3, v2Rand);
    
-    for (Int_t nt = 0; nt < nTracks; nt++) {
+    for (Int_t nt = 0; nt < nTracksRand; nt++) {
 	phi[nt] = v2Func->GetRandom();  
 	}
    
@@ -55,11 +55,11 @@ void rootfuncgenerate(Int_t nEvents, Int_t nTracks, Double_t v2)
       cout << "event " << n+1 << endl;
     
     file<< "Event "<<n<<endl;
-    file<< "nTracks "<<nTracks<<endl;
+    file<< "nTracks "<<nTracksRand<<endl;
     
     
-    for(Int_t i = 0; i < nTracks; i++){
-	hPhi->Fill(phi[i]); //We only get same values for each event
+    for(Int_t i = 0; i < nTracksRand; i++){
+	hPhi->Fill(phi[i]);
     file<<i<<" : "<<phi[i]<<endl;
     }
   }
