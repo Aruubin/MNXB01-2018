@@ -27,3 +27,29 @@ void TestMyEvent() {
 	MyEvent* event = new MyEvent();
 	std::cout<< event->fV2<<endl;
 }
+
+
+class MyTrack : public TObject
+{
+	public:
+	
+	Double_t fPhi;
+	MyTrack();
+	
+	ClassDef(MyTrack, 1);
+};
+
+
+ClassImp(MyTrack)
+
+MyTrack::MyTrack():
+TObject(),
+	fPhi(-1)
+{
+	
+}
+
+void TestMyTrack() {
+	MyTrack* event = new MyTrack();
+	std::cout<< event->fPhi<<endl;
+}

@@ -38,5 +38,13 @@
 ./EG_v2_tree_C.so: /usr/include/root/TAttBBox2D.h /usr/include/root/TPoint.h
 ./EG_v2_tree_C.so: /usr/include/root/TAttCanvas.h
 ./EG_v2_tree_C.so: /usr/include/root/TCanvasImp.h /usr/include/root/TRandom.h
+./EG_v2_tree_C.so: /usr/include/root/TTree.h /usr/include/root/TBranch.h
+./EG_v2_tree_C.so: /usr/include/root/TDataType.h
+./EG_v2_tree_C.so: /usr/include/root/TDictionary.h
+./EG_v2_tree_C.so: /usr/include/root/Property.h /usr/include/root/ESTLType.h
+./EG_v2_tree_C.so: /usr/include/root/TClass.h /usr/include/root/TObjString.h
+./EG_v2_tree_C.so: /usr/include/root/ThreadLocalStorage.h
+./EG_v2_tree_C.so: /usr/include/root/RConfigure.h
+./EG_v2_tree_C.so: /usr/include/root/TVirtualTreePlayer.h MyClasses.C
 ./EG_v2_tree_C.so: /usr/include/root/cintdictversion.h /usr/include/root/RVersion.h
 EG_v2_tree_C__ROOTBUILDVERSION= 5.34/30
