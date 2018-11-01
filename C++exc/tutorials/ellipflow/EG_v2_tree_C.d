@@ -45,6 +45,13 @@
 ./EG_v2_tree_C.so: /usr/include/root/TClass.h /usr/include/root/TObjString.h
 ./EG_v2_tree_C.so: /usr/include/root/ThreadLocalStorage.h
 ./EG_v2_tree_C.so: /usr/include/root/RConfigure.h
-./EG_v2_tree_C.so: /usr/include/root/TVirtualTreePlayer.h MyClasses.C
+./EG_v2_tree_C.so: /usr/include/root/TVirtualTreePlayer.h
+./EG_v2_tree_C.so: /usr/include/root/TFile.h
+./EG_v2_tree_C.so: /usr/include/root/TDirectoryFile.h
+./EG_v2_tree_C.so: /usr/include/root/TDirectory.h /usr/include/root/TList.h
+./EG_v2_tree_C.so: /usr/include/root/TDatime.h /usr/include/root/TUUID.h
+./EG_v2_tree_C.so: /usr/include/root/TMap.h /usr/include/root/THashTable.h
+./EG_v2_tree_C.so: /usr/include/root/TUrl.h /usr/include/root/TClonesArray.h
+./EG_v2_tree_C.so: MyClasses.C
 ./EG_v2_tree_C.so: /usr/include/root/cintdictversion.h /usr/include/root/RVersion.h
 EG_v2_tree_C__ROOTBUILDVERSION= 5.34/30
